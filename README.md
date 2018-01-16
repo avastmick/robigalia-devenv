@@ -5,7 +5,7 @@ The aim is to collate various tips and tricks to improve the installation and de
 ## TL;DR;
 
 1. Fork https://gitlab.com/robigalia/devbox.git to your own account on gitlab.com
-1. run the following:
+1. Run the following:
 
 ```$bash
 git clone https://gitlab.com/[YOUR_USER]/robigalia-devenv.git
@@ -29,7 +29,6 @@ This will:
 git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia
 git remote add upstream git@gitlab.com:robigalia/devbox.git
 git submodule update --init --recursive --remote
-git remote set-url origin
 ```
 
 - Run from the root of this repo (*not the robigalia/devbox repo*):
@@ -46,6 +45,8 @@ If everything works fine, then
 ```bash
 docker run -it --name robigalia-dev --volume "$(pwd)":/src robigalia/devbox
 ```
+
+You should be able to now hack away on either the Robigalia subprojects (fork upstream and change the submodule directory remote accordingly), or include your own (my plan)!
 
 ## TODO
 

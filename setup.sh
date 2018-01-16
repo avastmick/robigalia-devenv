@@ -20,18 +20,14 @@ command -v docker >/dev/null && { echo docker installed;  } || { echo "docker no
 
 # 2. Run build docker images
 # TODO: check if image exists
-echo "Building docker image. This may take some time, depending on your Internet connection..." && cp ../runner/toolchain-nightly-date . && \
+echo "Building docker image. This may take some time, depending on your Internet connection..." && \
 docker build -t robigalia/devbox .
 
 # 3. Set up remote and init the submodules
-cd .. && git remote add upstream git@gitlab.com:robigalia/devbox.git && \
-git submodule update --init --recursive --remote
+git clone --recursive https://gitlab.com/robigalia/devbox.git robigalia && cd robigalia && git submodule update --init --remote
+./add_remotes.sh
 
-# 4. Run docker
+# 4. Run docker container
 # a. Create alias in shell rc
 # run
-cd .. && \
-docker run -it --rm --volume "$(pwd)":/src robigalia/devbox
-
-# 5. Drink beer
-echo Mmmmm, beer!
+docker run -it --name robigalia --volume "$(pwd)":/src robigalia/devbox

@@ -7,7 +7,8 @@ The aim is to collate various tips and tricks to improve the installation and de
 - Fork the robigalia/devbox project
 - ``$ git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia``
 - ``$ git remote add upstream git@gitlab.com:robigalia/devbox.git``
-- ``$ git submodule update --init --recursive --remote``
+- ``$ git submodule update --init --recursive --remote``...``
+- ``$ git remote set-url origin 
 
 TODO: Create a script that initialises the repo from the submodules and builds the docker image locally
 
@@ -39,8 +40,5 @@ Docker would solve many of the above issues and isolate the host machine configu
 
 ## TODO
 
-- Build new Docker image that is more friendly for local development
-- Create a script to set it all up, rather than user keyed steps
-- Get on their message / forum to contribute
-- Work out how to fork the repos simply to ensure that contrib PRs can be done smoothly
 - Testing via QEMU - see the CI image
+- Create a test script to import into image to execute the hello-world build

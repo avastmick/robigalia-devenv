@@ -35,6 +35,7 @@ git submodule update --init --recursive --remote
 
 ```bash
 docker build -t robigalia/devbox .
+cd robigalia
 docker run -it --rm --volume "$(pwd)":/src robigalia/devbox
 ```
 

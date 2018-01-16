@@ -5,11 +5,12 @@ The aim is to collate various tips and tricks to improve the installation and de
 ## TL;DR;
 
 1. Fork https://gitlab.com/robigalia/devbox.git to your own account on gitlab.com
-2. run the following:
-    ```
-    $ git clone https://gitlab.com/avastmick/robigalia-devenv.git
-    $ ./setup.sh
-    ```
+1. run the following:
+
+```$bash
+$ git clone https://gitlab.com/avastmick/robigalia-devenv.git
+$ ./setup.sh
+```
 
 This will:
 
@@ -25,7 +26,7 @@ This will:
 - Fork the robigalia/devbox project, then
 - ``$ git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia``
 - ``$ git remote add upstream git@gitlab.com:robigalia/devbox.git``
-- ``$ git submodule update --init --recursive --remote``...``
+- ``$ git submodule update --init --recursive --remote``
 - ``$ git remote set-url origin``
 
 run from the root of the repo:
@@ -36,7 +37,7 @@ This *should* give you everything you need.
 
 If everything works fine, then
 
-```
+```bash
 $ docker run -it --name robigalia-dev --volume "$(pwd)":/src robigalia/devbox
 ```
 

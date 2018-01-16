@@ -1,4 +1,4 @@
-# A Better Robigalia Development Experience
+# An Easier Robigalia Development Setup Experience
 
 The aim is to collate various tips and tricks to improve the installation and development / contribution to robigalia project.
 

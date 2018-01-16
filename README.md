@@ -2,43 +2,45 @@
 
 The aim is to collate various tips and tricks to improve the installation and development / contribution to robigalia project.
 
-## Repository
+## TL;DR;
 
-- Fork the robigalia/devbox project
+1. Fork https://gitlab.com/robigalia/devbox.git to your own account on gitlab.com
+2. run the following:
+    ```
+    $ git clone https://gitlab.com/avastmick/robigalia-devenv.git
+    $ ./setup.sh
+    ```
+
+This will:
+
+- Install Docker if it is not already installed
+- Build a development docker image similar to the Robigalia CI image
+- Clone the gitlab.com/robigalia/devbox project
+- Change the upstream remote (assumes you have already forked)
+- Run an ephemeral container
+- *TODO: run the hello-world*
+
+## Manual
+
+- Fork the robigalia/devbox project, then
 - ``$ git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia``
 - ``$ git remote add upstream git@gitlab.com:robigalia/devbox.git``
 - ``$ git submodule update --init --recursive --remote``...``
-- ``$ git remote set-url origin 
-
-TODO: Create a script that initialises the repo from the submodules and builds the docker image locally
+- ``$ git remote set-url origin``
 
 run from the root of the repo:
 
 ``docker run -it --rm --volume "$(pwd)":/src robigalia/devbox``
 
-*Should* give you everything you need.
+This *should* give you everything you need.
 
-## Rust settings
+If everything works fine, then
 
-### Toolchain
-
-Rather than setting a system-wide toolchain, set at a project level:
-
-``$ rustup override set nightly-2017-12-13``
-
-### PATH settings
-
-TODO:
-
-In the project there is a ``$PATH`` setting:
-
-``export RUST_TARGET_PATH=$HOME/proj/robigalia/sel4-targets``, this is supposed to be added to your shell rc file, in my case the ``.zshrc``, but it clashes then with any other Rust project (see above with regard to Toolchain settting.)
-
-## Docker
-
-Docker would solve many of the above issues and isolate the host machine configuration from the (complexity) of building the Robigalia workbench.
+```
+$ docker run -it -t robigalia-dev --volume "$(pwd)":/src robigalia/devbox
+```
 
 ## TODO
 
 - Testing via QEMU - see the CI image
-- Create a test script to import into image to execute the hello-world build
+- Create a test script to import into image to auto-execute the hello-world build

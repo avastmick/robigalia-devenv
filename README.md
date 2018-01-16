@@ -37,7 +37,7 @@ This *should* give you everything you need.
 If everything works fine, then
 
 ```
-$ docker run -it -t robigalia-dev --volume "$(pwd)":/src robigalia/devbox
+$ docker run -it --name robigalia-dev --volume "$(pwd)":/src robigalia/devbox
 ```
 
 ## TODO

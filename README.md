@@ -1,16 +1,21 @@
-# An Easier Robigalia Development Setup Experience
+# Easy Robigalia Development Setup
 
-The aim is to collate various tips and tricks to improve the installation and development / contribution to robigalia project.
+The aim is to collate various tips and tricks into scripts to improve the installation and development / contribution to robigalia project. 
+
+This is entirely based on Docker. This is good for those who do not want to add any specific configuration for the Robigalia that may break something else on their machine. This should work on any variety of Linux, including WSL on Windows.
 
 ## TL;DR;
 
-1. Fork https://gitlab.com/robigalia/devbox.git to your own account on gitlab.com
+1. Fork https://gitlab.com/robigalia/devbox.git to your own account on gitlab.com/YOUR_USERNAME
 1. Run the following:
 
 ```$bash
-git clone https://gitlab.com/[YOUR_USER]/robigalia-devenv.git
-./setup.sh
+git clone https://gitlab.com/[YOUR_USERNAME]/robigalia-devenv.git
+cd robigalia-devenv
+./setup.sh [YOUR_USERNAME]
 ```
+
+## ``./setup.sh``
 
 This will:
 
@@ -18,8 +23,27 @@ This will:
 - Build a development docker image similar to the Robigalia CI image
 - Clone the gitlab.com/robigalia/devbox project
 - Change the upstream remote (assumes you have already forked)
-- Run an ephemeral container
-- *TODO: auto-run the hello-world build*
+- Run an ephemeral container, and
+- Drop you into a bash prompt inside the container
+
+## Testing
+
+To test all is good at the container bash prompt:
+
+```$bash
+root@9cf52c86f557:/# cd src
+root@9cf52c86f557:/# ./hello-world.sh
+```
+
+- This will put a kernel into `sel4/stage/kernel-x86_64-pc99`
+- And the hello-world binaries into `target/x86_64-sel4-robigalia/release/hello-world`
+
+You can run these on a QEMU VM from you host machine:
+
+```$bash
+cd /path/to/your/robigalia-devenv/robigalia
+qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd ./hello-world/target/x86_64-sel4-robigalia/release/hello-world
+```
 
 ## Manual
 
@@ -51,5 +75,4 @@ You should be able to now hack away on either the Robigalia subprojects (fork up
 
 ## TODO
 
-- Testing via QEMU - see the CI image
-- Create a test script to import into image to auto-execute the hello-world build
+- Automate the testing via QEMU - see the CI image

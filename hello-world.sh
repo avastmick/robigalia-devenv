@@ -7,6 +7,6 @@
 echo "Building Hello World binaries..."
 cd sel4 && make x64_qemu_defconfig && make 
 
-cd ../hello-world && xargo build --target x86_64-sel4-robigalia && cd ..
+cd ../hello-world && xargo build --target  x86_64-sel4-robigalia --release && cd ..
 
 echo "Check the output and look for errors. There may be some rustc warns."

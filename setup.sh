@@ -36,7 +36,7 @@ if [ ! -d "$ROBIGALIA_DIR" ]; then
     else
         username=$1
     fi
-    git remote rename origin upstream && git remote add origin git@gitlab.com/$username/$file.git
+    git remote rename origin upstream && git remote add origin git@gitlab.com:$username/devbox.git && git fetch origin && git branch -u origin/master master
 
     cp ../hello-world.sh .
 else

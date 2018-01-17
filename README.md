@@ -33,19 +33,22 @@ To test all is good at the container bash prompt:
 ```$bash
 root@9cf52c86f557:/# cd src
 root@9cf52c86f557:/# ./hello-world.sh
+root@9cf52c86f557:/# exit
 ```
 
 - This will put a kernel into `sel4/stage/kernel-x86_64-pc99`
 - And the hello-world binaries into `target/x86_64-sel4-robigalia/release/hello-world`
 
-You can run these on a QEMU VM from you host machine:
+You can run these on a Dockerized QEMU:
 
 ```$bash
-cd /path/to/your/robigalia-devenv/robigalia
-qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd ./hello-world/target/x86_64-sel4-robigalia/release/hello-world
+cd /path/to/your/robigalia-devenv
+./qemu-test qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd ./hello-world/target/x86_64-sel4-robigalia/release/hello-world
 ```
 
-### QEMU via Docker
+The ``qeu-test`` script pulls down the ``tianon/qemu`` image and wraps it. Pass to it the usual QEMU args to test binaries and kernel
+
+### Manual QEMU via Docker
 
 ```$bash
 docker pull tianon/qemu
@@ -54,7 +57,7 @@ docker run -it --rm \
     --device /dev/kvm \
     --name qemu-container \
     -v $HOME/hda.qcow2:/tmp/hda.qcow2 \
-    -v "$(pwd)":/src \
+    -v "$(pwd)"/robigalia:/src \
     -e QEMU_HDA=/tmp/hda.qcow2 \
     -e QEMU_HDA_SIZE=100G \
     -e QEMU_CPU=4 \

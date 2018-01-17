@@ -51,7 +51,7 @@ qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd .
 
 ```bash
 git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia
-git remote add upstream git@gitlab.com:robigalia/devbox.git
+git remote add upstream https://gitlab.com:robigalia/devbox.git
 git submodule update --init --recursive --remote
 ```
 

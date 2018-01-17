@@ -16,7 +16,7 @@
 ROBIGALIA_DIR="robigalia"
 ROBIGALIA_CONTAINER="robigalia-dev"
 # 1. Install Docker
-command -v docker >/dev/null && { echo "Docker installed";  } || { echo "docker not found, installing."; sudo curl -sSL https://get.docker.com/ | sh; sudo chkconfig docker on; sudo service docker start; echo "You may need to log out to make your user run docker without root. Logout and re-run."; exit;}; 
+command -v docker >/dev/null && { echo "Docker installed";  } || { echo "docker not found, installing."; sudo curl -sSL https://get.docker.com/ | sh; sudo service docker start; echo "You may need to log out to make your user run docker without root. Logout and re-run."; exit;}; 
 
 # 2. Run build docker images
 if [ "$(docker images -q robigalia/devbox 2> /dev/null)" == "" ]; then

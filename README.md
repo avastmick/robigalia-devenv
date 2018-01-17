@@ -50,9 +50,9 @@ qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd .
 - Fork the robigalia/devbox project, then:
 
 ```bash
-git clone git@gitlab.com:[YOUR_USER]/devbox.git robigalia
-git remote add upstream https://gitlab.com:robigalia/devbox.git
+git clone https://gitlab.com/robigalia/devbox.git
 git submodule update --init --recursive --remote
+git remote rename origin upstream && git remote add origin git@gitlab.com:[YOUR_USERNAME]/devbox.git && git fetch origin && git branch -u origin/master master
 ```
 
 - Run from the root of this repo (*not the robigalia/devbox repo*):

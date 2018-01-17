@@ -40,14 +40,13 @@ if [ ! -d "$ROBIGALIA_DIR" ]; then
 
     cp ../hello-world.sh .
 else
-    cd $ROBIGALIA_DIR
     echo "The robigalia/devbox repo already exists. Skipping."
 fi
 
 # 4. Run docker container
 if [ ! "$(docker ps -qa -f name=$ROBIGALIA_CONTAINER)" ]; then
     echo "Running container as $ROBIGALIA_CONTAINER"
-    exec docker run -it --name $ROBIGALIA_CONTAINER --volume "$(pwd)":/src robigalia/devbox
+    exec docker run -it --name $ROBIGALIA_CONTAINER --volume "$(pwd)"/$ROBIGALIA_DIR:/src robigalia/devbox
 else
     echo "$ROBIGALIA_CONTAINER container already exists. Docker rm $ROBIGALIA_CONTAINER, if you want to re run."
     docker start $ROBIGALIA_CONTAINER && docker exec -it $ROBIGALIA_CONTAINER bash

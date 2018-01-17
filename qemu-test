@@ -1,0 +1,38 @@
+#!/bin/bash
+
+###########################################################
+#
+# Runs a given binary against a dockerized QEMU install
+# 
+###########################################################
+ROBIGALIA_DIR="robigalia"
+QEMU_CONTAINER="qemu"
+
+
+if [ ! -f "$HOME/hda.qcow2" ]; then
+    echo "Writing $HOME/hda.qcow2"
+    touch $HOME/hda.qcow2   
+else
+    echo "$HOME/hda.qcow2 set"
+fi
+
+if [ -z "$1" ]; then
+    echo "Please enter target(s) to deploy"
+else
+    if [ "$(docker images -q tianon/qemu 2> /dev/null)" == "" ]; then
+        docker pull tianon/qemu
+    else
+        docker run -it --rm \
+            --device /dev/kvm \
+            --name $QEMU_CONTAINER \
+            -v $HOME/hda.qcow2:/tmp/hda.qcow2 \
+            -v "$(pwd)"/$ROBIGALIA_DIR:/src \
+            -e QEMU_HDA=/tmp/hda.qcow2 \
+            -e QEMU_HDA_SIZE=100G \
+            -e QEMU_CPU=4 \
+            -e QEMU_RAM=4096 \
+            -e QEMU_BOOT='order=d' \
+            -e QEMU_PORTS='2375 2376' \
+            tianon/qemu $@
+    fi
+fi

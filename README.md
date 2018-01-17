@@ -45,7 +45,27 @@ cd /path/to/your/robigalia-devenv/robigalia
 qemu-system-x86_64 -nographic -kernel ./sel4/stage/kernel-x86_64-pc99  -initrd ./hello-world/target/x86_64-sel4-robigalia/release/hello-world
 ```
 
-## Manual
+### QEMU via Docker
+
+```$bash
+docker pull tianon/qemu
+touch $HOME/hda.qcow2
+docker run -it --rm \
+    --device /dev/kvm \
+    --name qemu-container \
+    -v $HOME/hda.qcow2:/tmp/hda.qcow2 \
+    -v "$(pwd)":/src \
+    -e QEMU_HDA=/tmp/hda.qcow2 \
+    -e QEMU_HDA_SIZE=100G \
+    -e QEMU_CPU=4 \
+    -e QEMU_RAM=4096 \
+    -e QEMU_BOOT='order=d' \
+    -e QEMU_PORTS='2375 2376' \
+    tianon/qemu \
+    qemu-system-x86_64 -nographic -kernel /src/sel4/stage/kernel-x86_64-pc99 -initrd /src/hello-world/target/x86_64-sel4-robigalia/release/hello-world
+```
+
+## Manual Setup
 
 - Fork the robigalia/devbox project, then:
 
@@ -72,7 +92,3 @@ docker run -it --name robigalia-dev --volume "$(pwd)":/src robigalia/devbox
 ```
 
 You should be able to now hack away on either the Robigalia subprojects (fork upstream and change the submodule directory remote accordingly), or include your own (my plan)!
-
-## TODO
-
-- Automate the testing via QEMU - see the CI image

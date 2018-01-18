@@ -1,0 +1,57 @@
+#!/bin/bash
+
+###########################################################
+#
+# Sets up a complete Robigalia development environment
+# - Pre-requisites:
+# 1. Installed Git
+#
+# - This script runs the following:
+# 1. Install Docker
+# 2. Build docker image
+# 3. TODO: Test
+# 4. Drink beer
+#
+###########################################################
+ROBIGALIA_DIR="devbox"
+ROBIGALIA_CONTAINER="robigalia-dev"
+
+# Help
+function usage {
+    echo "Usage:"
+    echo "      robigalia [param]"
+    echo "params:"
+    echo "      init: Creates a new robigalia test environment"
+    echo "      update: updates the robigalia/devbox submodules"
+    echo "      rebuild: removes and re-inits the robigalia/devbox project"
+    echo "      test-build: builds the hello-world project"
+    echo "      test-deploy: deploys and runs the hello-world binaries on a QEMU runner"
+    echo "      -h --help: This message"
+}
+
+function init {
+    exit
+}
+
+function update {
+    exit
+}
+
+function rebuild {
+    exit
+}
+# 1. Install Docker
+
+
+
+if [ -z "$1" ]; then
+    usage
+    exit
+fi
+if [[ "$1" == "init" ]]; then
+    init $@;
+elif [[ "$1" == "update" ]]; then
+    update $@;
+elif [[ "$1" == "rebuild" ]]; then
+    unlockacc $@;
+fi

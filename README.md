@@ -98,6 +98,21 @@ You should be able to now hack away on either the Robigalia subprojects (fork up
 
 ## TODO
 
+### Docker
+
+- Rebuild image with smaller footprint
+- Move to Alpine from Debian
+- Or, update to Debian:latest
+
+How small does the image need to be. Current size for DEBIAN:JESSIE is 1.55GB!
+Compare that to DEBIAN:JESSIE-SLIM of 1.5GB - a MASSIVE saving of 5MB...
+
+Target sub-300MB
+
+### Helper script
+
+Think about using Python, as the user interface / interaction is better.
+
 - Change the ``set-up.sh`` script to be more useful
 - Change name to robigalia
 - Add parametized running

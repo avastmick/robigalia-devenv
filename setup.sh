@@ -13,7 +13,7 @@
 # 4. Drink beer
 #
 ###########################################################
-ROBIGALIA_DIR="robigalia"
+ROBIGALIA_DIR="devbox"
 ROBIGALIA_CONTAINER="robigalia-dev"
 # 1. Install Docker
 command -v docker >/dev/null && { echo "Docker installed";  } || { echo "docker not found, installing."; sudo curl -sSL https://get.docker.com/ | sh; sudo service docker start; echo "You may need to log out to make your user run docker without root. Logout and re-run."; exit;}; 

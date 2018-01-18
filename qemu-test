@@ -5,7 +5,7 @@
 # Runs a given binary against a dockerized QEMU install
 # 
 ###########################################################
-ROBIGALIA_DIR="robigalia"
+ROBIGALIA_DIR="devbox"
 QEMU_CONTAINER="qemu"
 
 

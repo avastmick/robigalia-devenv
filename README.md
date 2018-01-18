@@ -95,3 +95,15 @@ docker run -it --name robigalia-dev --volume "$(pwd)":/src robigalia/devbox
 ```
 
 You should be able to now hack away on either the Robigalia subprojects (fork upstream and change the submodule directory remote accordingly), or include your own (my plan)!
+
+## TODO
+
+- Change the ``set-up.sh`` script to be more useful
+- Change name to robigalia
+- Add parametized running
+- Add ``init`` - does what the current set-up.sh does
+- Add ``update`` - updates the robigalia submodules
+- Add ``rebuild`` - removes and re-inits robigalia
+- Add ``test`` - using hello-world
+- Add ``test-deploy`` - using QEMU runner
+- Add ``-h --help``
